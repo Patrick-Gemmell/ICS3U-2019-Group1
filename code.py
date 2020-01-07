@@ -13,7 +13,24 @@ import board
 
 import constants
 
+def blank_white_reset_scene():
+    # do house keeping to ensure everythng is setup
 
+    # set up the NeoPixels
+    pixels = neopixel.NeoPixel(board.NEOPIXEL, 5, auto_write=False)
+    pixels.deinit() # and turn them all off
+
+    # reset sound to be off
+    sound = ugame.audio
+    sound.stop()
+    sound.mute(False)
+    
+    image_bank_1 = stage.Bank.from_bmp16("mt_game_studio.bmp")
+    
+    # Wait for 1/2 seconds
+    time.sleep(0.5)
+    splash_scene()
+    
 def splash_scene():
     # this function is the splash scene game loop
 
