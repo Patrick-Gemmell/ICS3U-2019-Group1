@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # Created by: Patrick
-# Created on: January 2019
+# Created on: December 2019
 # Makes a game on circuit python
 
 import ugame
@@ -88,12 +88,12 @@ def menu_scene():
     # add text objects
     text = []
 
-    text1 = stage.Text(width=29, height=14, font=None, palette=constants.MT_GAME_STUDIO_PALETTE, buffer=None)
+    text1 = stage.Text(width=29, height=14, font=None, palette=constants.NEW_PALETTE, buffer=None)
     text1.move(20, 10)
     text1.text("BALL BREAKER!")
     text.append(text1)
 
-    text2 = stage.Text(width=29, height=14, font=None, palette=constants.MT_GAME_STUDIO_PALETTE, buffer=None)
+    text2 = stage.Text(width=29, height=14, font=None, palette=constants.NEW_PALETTE, buffer=None)
     text2.move(40, 110)
     text2.text("PRESS START")
     text.append(text2)
