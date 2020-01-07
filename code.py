@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # Created by: Patrick
-# Created on: December 2019
+# Created on: January 2019
 # Makes a game on circuit python
 
 import ugame
