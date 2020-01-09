@@ -1,4 +1,4 @@
-# !/usr/bin/env python3
+#!/usr/bin/env python3
 
 # Created by: Patrick Gemmell
 # Created on: January 2019
@@ -239,6 +239,7 @@ def game_scene():
             else:
                 ship.move(ship.x + constants.BALL_SPEED, ship.y)
                 ship.set_frame(frame=None,rotation=1)
+                ship_direction = "right"
 
         # if left D-Pad is pressed
         if keys & ugame.K_LEFT != 0:
@@ -249,26 +250,30 @@ def game_scene():
             else:
                 ship.move(ship.x - constants.BALL_SPEED, ship.y)
                 ship.set_frame(frame=None,rotation=3)
+                ship_direction = "left"
 
-        # if UP D-Pad is pressed
         if keys & ugame.K_UP != 0:
-            # if ship moves off right screen, move it back
-            if ship.x > constants.SCREEN_X - constants.SPRITE_SIZE:
-                ship.x = constants.SCREEN_X - constants.SPRITE_SIZE
-            # else move ship right
+            # if ship moves off up screen, move it back
+            if ship.y > constants.SCREEN_Y - constants.SPRITE_SIZE:
+                ship.y = constants.SCREEN_Y - constants.SPRITE_SIZE
+            # else move ship up
             else:
-                ship.move(ship.x + constants.BALL_SPEED, ship.y)
-                ship.set_frame(frame=None,rotation=1)
+                ship.move(ship.x, ship.y - 1)
+                ship.set_frame(frame=None,rotation=0)
+                ship_direction = "up"
 
-        # if Down D-Pad is pressed
+        # if left D-Pad is pressed
         if keys & ugame.K_DOWN != 0:
-            # if ship moves off left screen, move it back
-            if ship.x < 0:
-                ship.x = 0
-            # else move ship left
+            # if ship moves off down screen, move it back
+            if ship.y < 0:
+                ship.y = 0
+            # else move ship down
             else:
-                ship.move(ship.x - constants.BALL_SPEED, ship.y)
-                ship.set_frame(frame=None,rotation=3)
+                ship.move(ship.x, ship.y + 1)
+                ship.set_frame(frame=None,rotation=2)
+                ship_direction = "down"
+
+
         # if A Button (fire) is pressed
         if a_button == constants.button_state["button_just_pressed"]:
             # fire a laser, if we have enough power (meaning we have not used up all the lasers)
@@ -287,7 +292,7 @@ def game_scene():
             pixels[pixel_number] = (0, 10, 0)
 
         for laser_number in range(len(lasers)):
-            if lasers[laser_number].x > 0:
+            if lasers[laser_number].x > 0 and ship_direction == "up":
                 lasers[laser_number].move(lasers[laser_number].x, lasers[laser_number].y - constants.ATTACK_SPEED)
                 lasers_moving_counter = lasers_moving_counter + 1
                 pixels[lasers_moving_counter] = (10, 10 - (2 * lasers_moving_counter + 2), 0)
@@ -297,6 +302,18 @@ def game_scene():
             for pixel_number in range(0, 5):
                 pixels[pixel_number] = (10, 0, 0)
         pixels.show()
+
+        for laser_number in range(len(lasers)):
+            if lasers[laser_number].x > 0 and ship_direction == "down":
+                lasers[laser_number].move(lasers[laser_number].x, lasers[laser_number].y - constants.ATTACK_SPEED)
+                lasers_moving_counter = lasers_moving_counter + 1
+                pixels[lasers_moving_counter] = (10, 10 - (2 * lasers_moving_counter + 2), 0)
+                if lasers[laser_number].y < constants.OFF_TOP_SCREEN:
+                    lasers[laser_number].move(constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
+        if lasers_moving_counter == 4:
+            for pixel_number in range(0, 5):
+                pixels[pixel_number] = (10, 0, 0)
+
 
         # each frame move the aliens down the screen
         for alien_number in range(len(aliens)):
