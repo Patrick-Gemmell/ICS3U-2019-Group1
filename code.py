@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+# !/usr/bin/env python3
 
 # Created by: Patrick Gemmell
 # Created on: January 2019
@@ -87,7 +87,7 @@ def menu_scene():
 
     text1 = stage.Text(width=29, height=14, font=None, palette=constants.NEW_PALETTE, buffer=None)
     text1.move(20, 10)
-    text1.text("MT Game Studios")
+    text1.text("Sniper Shootout")
     text.append(text1)
 
     text2 = stage.Text(width=29, height=14, font=None, palette=constants.NEW_PALETTE, buffer=None)
@@ -158,13 +158,14 @@ def game_scene():
 
     # an image bank for CircuitPython
     image_bank_1 = stage.Bank.from_bmp16("space_aliens.bmp")
+    image_bank_2 = stage.Bank.from_bmp16("sprites.bmp")
     # a list of sprites that will be updated every frame
     sprites = []
 
     # create lasers for when we shoot
     lasers = []
     for laser_number in range(constants.TOTAL_ATTACKS):
-        a_single_laser = stage.Sprite(image_bank_1, 10, constants.OFF_SCREEN_X, constants.OFF_SCREEN_X)
+        a_single_laser = stage.Sprite(image_bank_2, 1, constants.OFF_SCREEN_X, constants.OFF_SCREEN_X)
         lasers.append(a_single_laser)
 
     # set up the NeoPixels to match the # of lasers fired
@@ -176,7 +177,7 @@ def game_scene():
     # create aliens
     aliens = []
     for alien_number in range(constants.TOTAL_NUMBER_OF_ALIENS):
-        a_single_alien = stage.Sprite(image_bank_1, 9, constants.OFF_SCREEN_X, constants.OFF_SCREEN_X)
+        a_single_alien = stage.Sprite(image_bank_2, 3, constants.OFF_SCREEN_X, constants.OFF_SCREEN_X)
         aliens.append(a_single_alien)
 
     # current number of aliens that should be moving down screen, start with just 1
@@ -190,14 +191,14 @@ def game_scene():
     score_text.move(1, 1)
     score_text.text("Score: {0}".format(score))
 
-    ship = stage.Sprite(image_bank_1, 5, int(constants.SCREEN_X / 2), constants.SCREEN_Y - constants.SPRITE_SIZE)
+    ship = stage.Sprite(image_bank_2, 4, int(constants.SCREEN_X / 2), constants.SCREEN_Y - constants.SPRITE_SIZE)
     sprites.append(ship) # insert at the top of sprite list
 
     # sets the background to image 0 in the bank
-    background = stage.Grid(image_bank_1, constants.SCREEN_GRID_X, constants.SCREEN_GRID_Y)
+    background = stage.Grid(image_bank_2, constants.SCREEN_GRID_X, constants.SCREEN_GRID_Y)
     for x_location in range(constants.SCREEN_GRID_X):
         for y_location in range(constants.SCREEN_GRID_Y):
-            tile_picked = random.randint(1, 3)
+            tile_picked = random.randint(0, 0)
             background.tile(x_location, y_location, tile_picked)
 
 
@@ -237,6 +238,7 @@ def game_scene():
             # else move ship right
             else:
                 ship.move(ship.x + constants.BALL_SPEED, ship.y)
+                ship.set_frame(frame=None,rotation=1)
 
         # if left D-Pad is pressed
         if keys & ugame.K_LEFT != 0:
@@ -246,7 +248,27 @@ def game_scene():
             # else move ship left
             else:
                 ship.move(ship.x - constants.BALL_SPEED, ship.y)
+                ship.set_frame(frame=None,rotation=3)
 
+        # if UP D-Pad is pressed
+        if keys & ugame.K_UP != 0:
+            # if ship moves off right screen, move it back
+            if ship.x > constants.SCREEN_X - constants.SPRITE_SIZE:
+                ship.x = constants.SCREEN_X - constants.SPRITE_SIZE
+            # else move ship right
+            else:
+                ship.move(ship.x + constants.BALL_SPEED, ship.y)
+                ship.set_frame(frame=None,rotation=1)
+
+        # if Down D-Pad is pressed
+        if keys & ugame.K_DOWN != 0:
+            # if ship moves off left screen, move it back
+            if ship.x < 0:
+                ship.x = 0
+            # else move ship left
+            else:
+                ship.move(ship.x - constants.BALL_SPEED, ship.y)
+                ship.set_frame(frame=None,rotation=3)
         # if A Button (fire) is pressed
         if a_button == constants.button_state["button_just_pressed"]:
             # fire a laser, if we have enough power (meaning we have not used up all the lasers)
