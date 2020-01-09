@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+# !/usr/bin/env python3
 
 # Created by: Patrick Gemmell
 # Created on: January 2019
@@ -238,6 +238,7 @@ def game_scene():
             # else move ship right
             else:
                 ship.move(ship.x + constants.BALL_SPEED, ship.y)
+                ship.set_frame(frame=None,rotation=1)
 
         # if left D-Pad is pressed
         if keys & ugame.K_LEFT != 0:
@@ -247,7 +248,27 @@ def game_scene():
             # else move ship left
             else:
                 ship.move(ship.x - constants.BALL_SPEED, ship.y)
+                ship.set_frame(frame=None,rotation=3)
 
+        # if UP D-Pad is pressed
+        if keys & ugame.K_UP != 0:
+            # if ship moves off right screen, move it back
+            if ship.x > constants.SCREEN_X - constants.SPRITE_SIZE:
+                ship.x = constants.SCREEN_X - constants.SPRITE_SIZE
+            # else move ship right
+            else:
+                ship.move(ship.x + constants.BALL_SPEED, ship.y)
+                ship.set_frame(frame=None,rotation=1)
+
+        # if Down D-Pad is pressed
+        if keys & ugame.K_DOWN != 0:
+            # if ship moves off left screen, move it back
+            if ship.x < 0:
+                ship.x = 0
+            # else move ship left
+            else:
+                ship.move(ship.x - constants.BALL_SPEED, ship.y)
+                ship.set_frame(frame=None,rotation=3)
         # if A Button (fire) is pressed
         if a_button == constants.button_state["button_just_pressed"]:
             # fire a laser, if we have enough power (meaning we have not used up all the lasers)
