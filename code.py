@@ -133,6 +133,9 @@ def game_scene():
     # game score
     score = 0
 
+    # ship direction
+    ship_direction = None
+
     def show_alien():
         # I know this is a function that is using variables outside of itself!
         #   BUT this code is going to be used in 2 places :)
@@ -164,8 +167,10 @@ def game_scene():
 
     # create lasers for when we shoot
     lasers = []
+    lasers_direction = []
     for laser_number in range(constants.TOTAL_ATTACKS):
         a_single_laser = stage.Sprite(image_bank_2, 1, constants.OFF_SCREEN_X, constants.OFF_SCREEN_X)
+        lasers_direction.append("None")
         lasers.append(a_single_laser)
 
     # set up the NeoPixels to match the # of lasers fired
@@ -231,6 +236,7 @@ def game_scene():
         # update game logic
 
         # if right D-Pad is pressed
+
         if keys & ugame.K_RIGHT != 0:
             # if ship moves off right screen, move it back
             if ship.x > constants.SCREEN_X - constants.SPRITE_SIZE:
@@ -280,6 +286,7 @@ def game_scene():
             for laser_number in range(len(lasers)):
                 if lasers[laser_number].x < 0:
                     lasers[laser_number].move(ship.x, ship.y)
+                    lasers_direction[laser_number] = ship_direction
                     sound.stop()
                     sound.play(pew_sound)
                     break
@@ -292,27 +299,27 @@ def game_scene():
             pixels[pixel_number] = (0, 10, 0)
 
         for laser_number in range(len(lasers)):
-            if lasers[laser_number].x > 0 and ship_direction == "up":
-                lasers[laser_number].move(lasers[laser_number].x, lasers[laser_number].y - constants.ATTACK_SPEED)
+            if lasers[laser_number].x > 0 :
+                laser_move_direction = None
+                if lasers_direction[laser_number] == "down":
+                    lasers[laser_number].move(lasers[laser_number].x, lasers[laser_number].y + constants.ATTACK_SPEED)
+                elif lasers_direction[laser_number] == "up":
+                    lasers[laser_number].move(lasers[laser_number].x, lasers[laser_number].y - constants.ATTACK_SPEED)
+                elif lasers_direction[laser_number] == "left":
+                    lasers[laser_number].move(lasers[laser_number].x - constants.ATTACK_SPEED, lasers[laser_number].y)
+                elif lasers_direction[laser_number] == "right":
+                    lasers[laser_number].move(lasers[laser_number].x + constants.ATTACK_SPEED, lasers[laser_number].y)
+
+
                 lasers_moving_counter = lasers_moving_counter + 1
                 pixels[lasers_moving_counter] = (10, 10 - (2 * lasers_moving_counter + 2), 0)
                 if lasers[laser_number].y < constants.OFF_TOP_SCREEN:
                     lasers[laser_number].move(constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
+
         if lasers_moving_counter == 4:
             for pixel_number in range(0, 5):
                 pixels[pixel_number] = (10, 0, 0)
         pixels.show()
-
-        for laser_number in range(len(lasers)):
-            if lasers[laser_number].x > 0 and ship_direction == "down":
-                lasers[laser_number].move(lasers[laser_number].x, lasers[laser_number].y - constants.ATTACK_SPEED)
-                lasers_moving_counter = lasers_moving_counter + 1
-                pixels[lasers_moving_counter] = (10, 10 - (2 * lasers_moving_counter + 2), 0)
-                if lasers[laser_number].y < constants.OFF_TOP_SCREEN:
-                    lasers[laser_number].move(constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
-        if lasers_moving_counter == 4:
-            for pixel_number in range(0, 5):
-                pixels[pixel_number] = (10, 0, 0)
 
 
         # each frame move the aliens down the screen
