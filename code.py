@@ -829,7 +829,7 @@ def game_over_scene(final_score):
 
         if keys & ugame.K_SELECT != 0:  # Start button
             keys = 0
-            menu_scene()
+            game_scene()
             #break
 
         # redraw sprite list
