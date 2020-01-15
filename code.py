@@ -108,34 +108,44 @@ def splash_scene():
 def pp_splash_scene():
     # this function is the MT splash scene
     # an image bank for CircuitPython
-    image_bank_2 = stage.Bank.from_bmp16("mt_game_studio.bmp")
+    # mt_game_studio
+    image_bank_4 = stage.Bank.from_bmp16("menu3.bmp")
     # sets the background to image 0 in the bank
-    background = stage.Grid(image_bank_2, constants.SCREEN_GRID_X, constants.SCREEN_GRID_Y)
+    background = stage.Grid(image_bank_4, constants.SCREEN_GRID_X, constants.SCREEN_GRID_Y)
     # used this program to split the iamge into tile: https://ezgif.com/sprite-cutter/ezgif-5-818cdbcc3f66.png
-    background.tile(2, 2, 0)  # blank white
-    background.tile(3, 2, 1)
-    background.tile(4, 2, 2)
-    background.tile(5, 2, 3)
-    background.tile(6, 2, 4)
-    background.tile(7, 2, 0)  # blank white
-    background.tile(2, 3, 0)  # blank white
-    background.tile(3, 3, 5)
-    background.tile(4, 3, 6)
-    background.tile(5, 3, 7)
-    background.tile(6, 3, 8)
-    background.tile(7, 3, 0)  # blank white
-    background.tile(2, 4, 0)  # blank white
-    background.tile(3, 4, 9)
-    background.tile(4, 4, 10)
-    background.tile(5, 4, 11)
-    background.tile(6, 4, 12)
-    background.tile(7, 4, 0)  # blank white
-    background.tile(2, 5, 0)  # blank white
-    background.tile(3, 5, 0)
-    background.tile(4, 5, 13)
-    background.tile(5, 5, 14)
-    background.tile(6, 5, 0)
-    background.tile(7, 5, 0)  # blank white
+    sprite = []
+
+    sprite_one = stage.Sprite(image_bank_4, 1, 48, 32)
+    sprite.append(sprite_one)
+    sprite_two = stage.Sprite(image_bank_4, 2, 48, 48)
+    sprite.append(sprite_two)
+    sprite_three = stage.Sprite(image_bank_4, 3, 48, 64)
+    sprite.append(sprite_three)
+    sprite_four = stage.Sprite(image_bank_4, 4, 48, 80)
+    sprite.append(sprite_four)
+    sprite_five = stage.Sprite(image_bank_4, 5, 64, 32)
+    sprite.append(sprite_five)
+    sprite_six = stage.Sprite(image_bank_4, 6, 64, 48)
+    sprite.append(sprite_six)
+    sprite_seven = stage.Sprite(image_bank_4, 7, 64, 64)
+    sprite.append(sprite_seven)
+    sprite_eight = stage.Sprite(image_bank_4, 8, 64, 80 )
+    sprite.append(sprite_eight)
+    sprite_nine = stage.Sprite(image_bank_4, 9, 80, 32)
+    sprite.append(sprite_nine)
+    sprite_ten = stage.Sprite(image_bank_4, 10, 80, 48)
+    sprite.append(sprite_ten)
+    sprite_eleven = stage.Sprite(image_bank_4, 11, 80, 64)
+    sprite.append(sprite_eleven)
+
+
+
+
+
+
+
+
+
     text = []
     text1 = stage.Text(width=29, height=14, font=None, palette=constants.NEW_PALETTE, buffer=None)
     text1.move(20, 10)
@@ -153,7 +163,7 @@ def pp_splash_scene():
     #   and set the frame rate to 60fps
     game = stage.Stage(ugame.display, 60)
     # set the layers, items show up in order
-    game.layers = text + [background]
+    game.layers = text + sprite + [background]
     # render the background and inital location of sprite list
     # most likely you will only render background once per scene
     game.render_block()
@@ -178,31 +188,7 @@ def menu_scene():
     # sets the background to image 0 in the bank
     background = stage.Grid(image_bank_2, constants.SCREEN_GRID_X, constants.SCREEN_GRID_Y)
 
-    # used this program to split the iamge into tile: https://ezgif.com/sprite-cutter/ezgif-5-818cdbcc3f66.png
-    background.tile(2, 4, 13)  # blank white
-    background.tile(1, 2, 0)
-    background.tile(0, 3, 0)
-    background.tile(1, 3, 0)
-    background.tile(0, 4, 0)
-    background.tile(1, 4, 0)  # blank white
-    background.tile(2, 4, 0)  # blank white
-    background.tile(3, 4, 0)
-    background.tile(3, 5, 0)
-    background.tile(3, 6, 0)
-    background.tile(2, 6, 0)
-    background.tile(2, 7, 0)  # blank white
-    background.tile(1, 7, 0)  # blank white
-    background.tile(0, 8, 0)
-    background.tile(1, 8, 0)
-    background.tile(5, 4, 0)
-    background.tile(6, 4, 0)
-    background.tile(7, 4, 0)  # blank white
-    background.tile(2, 5, 0)  # blank white
-    background.tile(3, 5, 0)
-    background.tile(4, 5, 0)
-    background.tile(5, 5, 0)
-    background.tile(6, 5, 0)
-    background.tile(7, 5, 0)  # blank white
+    # used this program to split the iamge into tile: https://ezgif.com/sprite-cutter/ezgif-5-818cdbcc3f66.pn
 
     sprite = []
 
@@ -311,7 +297,7 @@ def menu_scene():
 
 def game_scene():
     # this function is the game scene
-    image_bank_1 = stage.Bank.from_bmp16("space_aliens.bmp")
+    ALIEN_SPEED = 1
     image_bank_2 = stage.Bank.from_bmp16("sprites.bmp")
     # game score
     score = 0
@@ -455,7 +441,7 @@ def game_scene():
     score_text.move(1, 1)
     score_text.text("Score: {0}".format(score))
 
-    tank = stage.Sprite(image_bank_2, 4, int(constants.SCREEN_X / 2), constants.SCREEN_Y - constants.SPRITE_SIZE)
+    tank = stage.Sprite(image_bank_2, 4, 75, 60)
     sprites.append(tank) # insert at the top of sprite list
 
     # sets the background to image 0 in the bank
@@ -592,7 +578,7 @@ def game_scene():
         for left_frog_number in range(len(left_frogs)):
             if left_frogs[left_frog_number].x < constants.OFF_RIGHT_SCREEN:
                 left_frogs[left_frog_number].move(
-                left_frogs[left_frog_number].x + constants.ALIEN_SPEED,
+                left_frogs[left_frog_number].x + ALIEN_SPEED,
                 left_frogs[left_frog_number].y)
                 if left_frogs[left_frog_number].x > constants.SCREEN_X:
                     left_frogs[left_frog_number].move(constants.OFF_SCREEN_X,
@@ -604,7 +590,7 @@ def game_scene():
             if top_frogs[top_frog_number].y < constants.OFF_BOTTOM_SCREEN:
                 top_frogs[top_frog_number].move(
                 top_frogs[top_frog_number].x,
-                top_frogs[top_frog_number].y + constants.ALIEN_SPEED)
+                top_frogs[top_frog_number].y + ALIEN_SPEED)
                 if top_frogs[top_frog_number].y > constants.SCREEN_Y:
                     top_frogs[top_frog_number].move(constants.OFF_SCREEN_X,
                                                             constants.OFF_SCREEN_Y)
@@ -614,7 +600,7 @@ def game_scene():
         for right_frog_number in range(len(right_frogs)):
             if right_frogs[right_frog_number].x > constants.OFF_LEFT_SCREEN:
                 right_frogs[right_frog_number].move(
-                right_frogs[right_frog_number].x - constants.ALIEN_SPEED,
+                right_frogs[right_frog_number].x - ALIEN_SPEED,
                 right_frogs[right_frog_number].y)
                 if right_frogs[right_frog_number].x < 0 - constants.SPRITE_SIZE:
                     right_frogs[right_frog_number].move(constants.OFF_SCREEN_X,
@@ -626,12 +612,12 @@ def game_scene():
             if bottom_frogs[down_frog_number].y > constants.OFF_TOP_SCREEN:
                 bottom_frogs[down_frog_number].move(
                 bottom_frogs[down_frog_number].x,
-                bottom_frogs[down_frog_number].y - constants.ALIEN_SPEED)
+                bottom_frogs[down_frog_number].y - ALIEN_SPEED)
                 if bottom_frogs[down_frog_number].y < 0 - constants.SPRITE_SIZE:
                     bottom_frogs[down_frog_number].move(constants.OFF_SCREEN_X,
                                                                 constants.OFF_SCREEN_Y)
                     reset_bottom_frog()
-    
+
         # each frame check if any of the lasers are touching any of the frogs
         for laser_number in range(len(lasers)):
             if lasers[laser_number].x > 0:
@@ -675,6 +661,8 @@ def game_scene():
                             sound.stop()
                             # sound.play(impact_sound)
                             score = score + 1
+                            if score % 10 == 0:
+                                ALIEN_SPEED = ALIEN_SPEED + 0.5
                             reset_top_frog()
                             frog_counter = frog_counter + 1
 
@@ -779,7 +767,7 @@ def game_scene():
                     time.sleep(4.0)
                     sound.stop()
                     game_over_scene(score)
-        
+
         game.render_sprites(left_frogs + right_frogs + top_frogs +
                             bottom_frogs + sprites + lasers)
         game.tick()
@@ -829,7 +817,7 @@ def game_over_scene(final_score):
 
         if keys & ugame.K_SELECT != 0:  # Start button
             keys = 0
-            game_scene()
+            menu_scene()
             #break
 
         # redraw sprite list
