@@ -7,9 +7,9 @@ Before we can start coding a video game, we need to have the artwork and other a
 .. figure:: https://raw.githubusercontent.com/MotherTeresaHS/ICS3U-2019-Group0/master/space_aliens.bmp
     :height: 256 px
     :align: center
-    :alt: Image Bank for Space Aliens
+    :alt: Image Bank for Shooter Shootout
 
-    Image Bank for Space Aliens
+    Image Bank for Shooter Shootout
 
 For sound, the stage library can play back :file:`*.wav` files in PCM 16-bit Mono Wave files at 22KHz sample rate. Adafruit has a great learning guide on how to save your sound files to the correct format `here <https://learn.adafruit.com/adafruit-wave-shield-audio-shield-for-arduino/convert-files>`_.
 
