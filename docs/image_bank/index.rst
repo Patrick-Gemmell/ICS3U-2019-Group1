@@ -16,6 +16,9 @@ For sound, the stage library can play back :file:`*.wav` files in PCM 16-bit Mon
 If you do not want to get into creating your own assets, other people have already made assets available to use. All the assets for this guide can be found in the GitHub repo here:
 
 - `shooter shootout image bank <https://github.com/Patrick-Gemmell/ICS3U-2019-Group1/blob/master/docs/image_bank/sprites.bmp>`_
+- `1st menu image bank <https://github.com/Patrick-Gemmell/ICS3U-2019-Group1/blob/master/docs/image_bank/Menu.bmp>`_
+- `2nd menu image bank <https://github.com/Patrick-Gemmell/ICS3U-2019-Group1/blob/master/docs/image_bank/menu2.bmp>`_
+- `3rd menu image bank <https://github.com/Patrick-Gemmell/ICS3U-2019-Group1/blob/master/docs/image_bank/menu3.bmp>`_
 - `coin sound <https://github.com/MotherTeresaHS/ICS3U-2019-Group0/blob/master/coin.wav>`_
 - `pew sound <https://github.com/MotherTeresaHS/ICS3U-2019-Group0/blob/master/pew2.wav>`_
 - `boom sound <https://github.com/MotherTeresaHS/ICS3U-2019-Group0/blob/master/boom.wav>`_
