@@ -11,7 +11,7 @@ In this project we used a series of 16 pixels by 16 pixels picture to act as our
     :alt: Image Bank for Shooter Shootout
 
 Next we continued to use the sprite and find a way to move it around, and this was how we did it.
-.. figure:: https://github.com/Patrick-Gemmell/ICS3U-2019-Group1/blob/master/docs/game/images/movement.PNG
+.. figure:: ./movement.PNG
     :height: 256 px
     :align: center
     :alt: Image for movement
