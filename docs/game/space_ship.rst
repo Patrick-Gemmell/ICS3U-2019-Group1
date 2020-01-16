@@ -11,8 +11,8 @@ In this project we used a series of 16 pixels by 16 pixels picture to act as our
     :alt: Image Bank for Shooter Shootout
 
 Next we continued to use the sprite and find a way to move it around, and this was how we did it.
-.. figure:: ./movement.PNG
-    :height: 256 px
+.. figure:: ./chrome_text_ide.png
+    :width: 480 px
     :align: center
-    :alt: Image for movement
+    :alt: Chromebook Text Editor
 X
