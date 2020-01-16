@@ -11,4 +11,4 @@ X
    :glob:
 
    Background <background>
-   Tank <tank>
+   Tank <space_ship>
