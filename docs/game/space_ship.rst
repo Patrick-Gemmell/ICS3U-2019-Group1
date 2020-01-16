@@ -1,4 +1,4 @@
-.. _space_ship:
+.. _tank:
 
 Space Ship
 ==========
