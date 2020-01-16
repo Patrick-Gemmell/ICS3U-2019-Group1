@@ -12,7 +12,7 @@ In this project we used a series of 16 pixels by 16 pixels picture to act as our
 
 Next we continued to use the sprite and find a way to move it around, and this was how we did it.
 
-.. figure:: ./chrome_text_ide.png
+.. figure:: ./movement.png
     :width: 480 px
     :align: center
     :alt: Chromebook Text Editor
