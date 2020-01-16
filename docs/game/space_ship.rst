@@ -1,6 +1,6 @@
 .. _tank:
 
-Space Ship
+Tank
 ==========
 
 X
