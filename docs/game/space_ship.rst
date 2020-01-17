@@ -58,6 +58,7 @@ Next we continued to use the sprite and find a way to move it around, and this w
                 tank_direction = "down"
 	
 Next we had to update the direction of the ship which goes with the directins the lasers are shooting, we did so by assigning a direction with a variable to change direction of ship by rotating and shooting direction.
+
 .. code-block:: python
 	:linenos:
 	if a_button == constants.button_state["button_just_pressed"]:
