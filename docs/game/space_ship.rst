@@ -12,7 +12,7 @@ In this project we used a series of 16 pixels by 16 pixels picture to act as our
 
 Next we continued to use the sprite and find a way to move it around, and this was how we did it.
 
-.. figure:: ./movement.PNG
+.. figure:: movement.PNG
     :width: 480 px
     :align: center
     :alt: Movement Code
