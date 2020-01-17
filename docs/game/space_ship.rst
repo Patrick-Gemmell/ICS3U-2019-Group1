@@ -61,6 +61,8 @@ Next we had to update the direction of the ship which goes with the directins th
 
 .. code-block:: python
 	:linenos:
+	
+	
 	if a_button == constants.button_state["button_just_pressed"]:
             # fire a laser, if we have enough power (meaning we have not used up all the lasers)
             for laser_number in range(len(lasers)):
