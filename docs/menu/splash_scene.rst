@@ -78,3 +78,92 @@ And this is how it is done:
         time.sleep(1.0)
         pp_splash_scene()
         # redraw sprite list
+	
+	
+And here is the PP Company splash screen:
+
+.. figure:: https://raw.githubusercontent.com/Patrick-Gemmell/ICS3U-2019-Group1/master/docs/menu/images/menu3.bmp
+    :height: 256 px
+    :align: center
+    :alt: Image Bank for PP Company
+
+
+And this is how it is done:
+
+.. code-block:: python
+	:linenos:
+	
+	def pp_splash_scene():
+    # this function is the MT splash scene
+    # an image bank for CircuitPython
+    # mt_game_studio
+    image_bank_4 = stage.Bank.from_bmp16("menu3.bmp")
+    # sets the background to image 0 in the bank
+    background = stage.Grid(image_bank_4, constants.SCREEN_GRID_X, constants.SCREEN_GRID_Y)
+    # used this program to split the iamge into tile: https://ezgif.com/sprite-cutter/ezgif-5-818cdbcc3f66.png
+    sprite = []
+
+    sprite_one = stage.Sprite(image_bank_4, 1, 48, 32)
+    sprite.append(sprite_one)
+    sprite_two = stage.Sprite(image_bank_4, 2, 48, 48)
+    sprite.append(sprite_two)
+    sprite_three = stage.Sprite(image_bank_4, 3, 48, 64)
+    sprite.append(sprite_three)
+    sprite_four = stage.Sprite(image_bank_4, 4, 48, 80)
+    sprite.append(sprite_four)
+    sprite_five = stage.Sprite(image_bank_4, 5, 64, 32)
+    sprite.append(sprite_five)
+    sprite_six = stage.Sprite(image_bank_4, 6, 64, 48)
+    sprite.append(sprite_six)
+    sprite_seven = stage.Sprite(image_bank_4, 7, 64, 64)
+    sprite.append(sprite_seven)
+    sprite_eight = stage.Sprite(image_bank_4, 8, 64, 80 )
+    sprite.append(sprite_eight)
+    sprite_nine = stage.Sprite(image_bank_4, 9, 80, 32)
+    sprite.append(sprite_nine)
+    sprite_ten = stage.Sprite(image_bank_4, 10, 80, 48)
+    sprite.append(sprite_ten)
+    sprite_eleven = stage.Sprite(image_bank_4, 11, 80, 64)
+    sprite.append(sprite_eleven)
+
+
+
+
+
+
+
+
+
+    text = []
+    text1 = stage.Text(width=29, height=14, font=None, palette=constants.NEW_PALETTE, buffer=None)
+    text1.move(20, 10)
+    text1.text("MT Game Studios")
+    text.append(text1)
+    # get sound ready
+    # follow this guide to convert your other sounds to something that will work
+    #    https://learn.adafruit.com/microcontroller-compatible-audio-file-conversion
+    coin_sound = open("coin.wav", 'rb')
+    sound = ugame.audio
+    sound.stop()
+    sound.mute(False)
+    sound.play(coin_sound)
+    # create a stage for the background to show up on
+    #   and set the frame rate to 60fps
+    game = stage.Stage(ugame.display, 60)
+    # set the layers, items show up in order
+    game.layers = text + sprite + [background]
+    # render the background and inital location of sprite list
+    # most likely you will only render background once per scene
+    game.render_block()
+    # repeat forever, game loop
+    while True:
+        # get user input
+        # update game logic
+        # Wait for 1/2 seconds
+        time.sleep(1.0)
+        menu_scene()
+        # redraw sprite list
+
+
+        # redraw sprite list
+
