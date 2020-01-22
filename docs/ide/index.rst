@@ -30,7 +30,7 @@ Hello, World!
 Yes, you know that first program you should always run when starting a new coding adventure, just to ensure everything is running correctly! Once you have access to your IDE and you have CircuitPython loaded, you should make sure everything is working before you move on. To do this we will do the traditional "Hello, World!" program. By default CircuitPython looks for a file called :file:`code.py` in the root directory of the PyBadge to start up. You will place the following code in the :file:`code.py` file:
 
 .. code-block:: python
-  :linenos:
+	:linenos:
 
 	print("Hello, World!")
 
@@ -45,13 +45,28 @@ As soon as you save the file onto the PyBadge, the screen should flash and you s
 
 Although this code does work just as is, it is always nice to ensure we are following proper coding conventions, including style and comments. Here is a better version of Hello, World! You will notice that I have a call to a :py:func:`main()` function. This is common in Python code but not normally seen in CircuitPython. I am including it because by breaking the code into different functions to match different scenes, eventually will be really helpful.
 
-.. literalinclude:: ./code/code.py
-   :language: python
-   :caption: code.py
-   :linenos:
+
+.. literalinclude:: ./example.py
+   :language: py
+   :lines: 10-20
+
+.. code-block:: python
+	:linenos:
+
+	#!/usr/bin/env python3
+
+	# Created by : Mr. Coxall
+	# Created on : January 2020
+	# This program prints out Hello, World! onto the PyBadge
+
+	  
+	def main():
+	    # this function prints out Hello, World! onto the PyBadge
+	    print("Hello, World!")
+
+
+	if __name__ == "__main__":
+	    main()
+    
 
 Congratulations, we are ready to start.
-
-.. note::
-
-   Full code and assets that can be copied onto PyBadge for this step can be found `here <https://github.com/MotherTeresaHS/ICS3U-2019-Group0/tree/master/docs/ide/code>`_.

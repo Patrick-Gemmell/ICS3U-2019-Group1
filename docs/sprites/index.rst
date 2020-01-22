@@ -2,16 +2,4 @@
 Sprites
 =======
 
-Now that we have the background, lets place a single sprite on the screen. Sprites are handled differently than the background, they can be placed anywhere we want on the sceen, not just tiled. We will create a varaible that holds a specific image from the image bank. We will also create a **list** that will hold all the sprites we want to paint onto the screen. We will take our ship variable and add it to this list. 
-
-Painting the entire screen each frame is not practical. The refresh rate just is not fast enough. Instead when the scene loads we will paint the background and then all the sprites on top of it. After that, each frame we will just redraw the sprites in the sprites list. This will let us have a much faster refesh rate. To accomplish this after we first paint the entire screen, we will create a loop, usually known as a gaming loop, that will keep running the code to update our sprites. 
-
-.. literalinclude:: ./code/code.py
-   :language: python
-   :caption: code.py
-   :linenos:
-   :emphasize-lines: 15,16,24-28,33,34,40-48
-
-.. note::
-
-   Full code and assets that can be copied onto PyBadge for this step can be found `here <https://github.com/MotherTeresaHS/ICS3U-2019-Group0/tree/master/docs/sprites/code>`_.
+Problems have been around for as long as people have been around. The process of solving a problem is not something new. Using a computer to aid in solving a problem is new. Modern electronic computers have only been around since the Second World War (1939-1945), which might seem like a long time ago to you but in the history of the human race it is a very short time. The purpose of this book is to help you learn to structure your problem solving method, so that you can consistently develop a verifiable solution that will solve a problem and in the process, use the computer to help you more easily and quickly solve that problem.
