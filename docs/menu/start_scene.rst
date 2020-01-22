@@ -9,6 +9,9 @@ For the start scene there are two parts, the picture and the button loop. The pi
     :align: center
     :alt: Image Bank for Main Menu
     
+    
+And this is the code we used:
+    
 .. code-block:: python
 	:linenos:
   
@@ -118,4 +121,4 @@ For the start scene there are two parts, the picture and the button loop. The pi
     
 
 
-X
+
